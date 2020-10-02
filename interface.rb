@@ -29,7 +29,7 @@ class Interface
     when 2
       buy_an_article
     when 3
-      manage_your_machine
+      get_stats_for_your_machine
     when 4
       say_goodbye
     else
@@ -111,14 +111,16 @@ class Interface
     @machine.retrieve_product(selected)
   end
 
-  def manage_your_machine
-    raise NotImplemented,
-          'Sorry, this functionality is under development
-          but you\'ll need a password'
+  def get_stats_for_your_machine
+    p "Here are the top 3 sales"
+    @machine.get_stats.each_with_index do |(k, v), i|
+      p "#{i}st place: #{k} with #{v} sales"
+    end
   end
 
   def say_goodbye
     puts 'Thanks for coming by, see you next time'
+    @machine.clear_stats
     exit
   end
 

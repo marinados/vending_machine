@@ -9,8 +9,16 @@ class ProductStock < Array
     end
 
     def price_in_gbp
-     price/100.0
+     price / 100.0
     end
+  end
+
+  def list_stats_keys
+    map { |p| p.display_name }
+  end
+
+  def list_daily_stats_keys
+    map { |p| (1..7).each { |w_d| "#{w_d}_#{p.display_name}" } }
   end
 
   def retrieve(product_id)
